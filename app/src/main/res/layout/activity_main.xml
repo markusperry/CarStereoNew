@@ -33,7 +33,8 @@
                 android:text="Volume"
                 android:id="@+id/volumeView"
                 android:layout_gravity="center_horizontal"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="30dp" />
 
             <SeekBar
                 android:layout_width="match_parent"
@@ -46,7 +47,8 @@
                 android:text="Tuner"
                 android:id="@+id/tunerText"
                 android:layout_gravity="center_horizontal"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="30dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -71,9 +73,10 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Station: "
+                android:text="Station: 93.1 FM"
                 android:id="@+id/stationView"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="30dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -89,7 +92,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Presets"
-                    android:id="@+id/presetView" />
+                    android:id="@+id/presetView"
+                    android:textSize="30dp" />
 
                 <Space
                     android:layout_width="fill_parent"
@@ -160,9 +164,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="CD Player"
-                android:id="@+id/cdDrive" />
+                android:id="@+id/cdDrive"
+                android:textSize="30dp" />
 
             <Space
                 android:layout_width="fill_parent"
@@ -173,7 +177,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <Button
@@ -211,6 +215,7 @@
                 android:text="Repeat"
                 android:id="@+id/repeatButton"
                 android:layout_weight="1"/>
+
         </LinearLayout>
 
     </LinearLayout>
