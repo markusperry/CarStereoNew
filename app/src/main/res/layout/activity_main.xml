@@ -19,13 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0"
-            android:background="#ff989898">
+            android:background="#ff989898"
+            >
 
             <ToggleButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New ToggleButton"
-                android:id="@+id/onoffSwitch" />
+                android:id="@+id/onoffSwitch"
+                android:checked="true"
+                android:clickable="false"
+                />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -60,7 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tunerControl"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:progress="60"/>
 
                 <Switch
                     android:layout_width="match_parent"
@@ -141,7 +145,7 @@
             <TextClock
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textClock"
+                android:id="@+id/digClock"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
                 android:typeface="serif"
