@@ -34,12 +34,13 @@
                 android:id="@+id/volumeView"
                 android:layout_gravity="center_horizontal"
                 android:textAlignment="center"
-                android:textSize="30dp" />
+                android:textSize="30sp" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/volumeControl" />
+                android:id="@+id/volumeControl"
+                android:progress="20"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -137,6 +138,19 @@
                     android:id="@+id/preset5" />
             </LinearLayout>
 
+            <TextClock
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textClock"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:typeface="serif"
+                android:textSize="50sp"
+                android:paddingLeft="350dp"
+                android:textColor="#41e35c"
+                android:background="#000000"
+                android:layout_marginTop="10dp" />
+
 
         </LinearLayout>
 
@@ -153,8 +167,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3.">
+            android:layout_height="wrap_content">
 
             <Space
                 android:layout_width="fill_parent"
@@ -177,8 +190,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="wrap_content"
@@ -216,6 +228,39 @@
                 android:id="@+id/repeatButton"
                 android:layout_weight="1"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Track Number: "
+                android:id="@+id/trackDisplay"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:background="#000000"
+                android:textColor="#41e35c"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:id="@+id/trackNumber"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:background="#000000"
+                android:textColor="#41e35c"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
     </LinearLayout>
