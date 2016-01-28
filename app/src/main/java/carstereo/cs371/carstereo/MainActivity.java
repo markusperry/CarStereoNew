@@ -1,8 +1,10 @@
 package carstereo.cs371.carstereo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +17,10 @@ import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import android.os.Vibrator;
 
 
-public class MainActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener, View.OnLongClickListener {
 
     protected ToggleButton onOff;
     protected TextClock clock;
@@ -32,6 +35,12 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
     protected Button preset3;
     protected Button preset4;
     protected Button preset5;
+
+    protected int userSet1;
+    protected int userSet2;
+    protected int userSet3;
+    protected int userSet4;
+    protected int userSet5;
 
 
     @Override
@@ -73,6 +82,13 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         preset5 = (Button)findViewById(R.id.preset5);
         preset5.setOnClickListener(this);
 
+        userSet1=0;
+        userSet2=0;
+        userSet3=0;
+        userSet4=0;
+        userSet5=0;
+
+
 
     }
 
@@ -103,6 +119,12 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
             this.tunerBar.setEnabled(false);
             this.volumeBar.setEnabled(false);
             this.AmFm.setClickable(false);
+            this.preset1.setClickable(false);
+            this.preset2.setClickable(false);
+            this.preset3.setClickable(false);
+            this.preset4.setClickable(false);
+            this.preset5.setClickable(false);
+
 
         } else {
             this.clock.setTextColor(Color.GREEN);
@@ -111,6 +133,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
             this.tunerBar.setEnabled(true);
             this.volumeBar.setEnabled(true);
             this.AmFm.setClickable(true);
+            this.preset1.setClickable(true);
+            this.preset2.setClickable(true);
+            this.preset3.setClickable(true);
+            this.preset4.setClickable(true);
+            this.preset5.setClickable(true);
 
         }
 
@@ -241,6 +268,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
                 setRadioText(54, am);
             }
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        return false;
     }
 }
 
