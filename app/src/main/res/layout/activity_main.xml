@@ -64,19 +64,23 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tunerControl"
                     android:layout_weight="1"
-                    android:progress="60"/>
+                    android:progress="60"
+                    />
 
                 <Switch
                     android:layout_width="match_parent"
                     android:layout_height="9dp"
                     android:text="AM/FM"
                     android:id="@+id/amfm"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textOn="FM"
+                    android:textOff="AM"
+                    android:checked="false" />
 
             </LinearLayout>
 
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="591dp"
                 android:layout_height="wrap_content"
                 android:text="Station: 93.1 FM"
                 android:id="@+id/stationView"
@@ -86,7 +90,8 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/presetsView">
 
                 <Space
                     android:layout_width="fill_parent"

@@ -9,13 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
 
     protected ToggleButton onOff;
     protected TextClock clock;
@@ -23,22 +25,53 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected TextView TrackNumber;
     protected SeekBar volumeBar;
     protected SeekBar tunerBar;
+    protected TextView stationDisp;
+    protected Switch AmFm;
+    protected Button preset1;
+    protected Button preset2;
+    protected Button preset3;
+    protected Button preset4;
+    protected Button preset5;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        onOff = (ToggleButton)findViewById(R.id.onoffSwitch);
+        onOff = (ToggleButton) findViewById(R.id.onoffSwitch);
         onOff.setOnClickListener(this);
-        clock = (TextClock)findViewById(R.id.digClock);
-        track = (TextView)findViewById(R.id.trackDisplay);
-        TrackNumber = (TextView)findViewById(R.id.trackNumber);
-        volumeBar = (SeekBar)findViewById(R.id.volumeControl);
-        tunerBar = (SeekBar)findViewById(R.id.tunerControl);
 
+        clock = (TextClock) findViewById(R.id.digClock);
 
+        track = (TextView) findViewById(R.id.trackDisplay);
 
+        TrackNumber = (TextView) findViewById(R.id.trackNumber);
 
+        volumeBar = (SeekBar) findViewById(R.id.volumeControl);
+
+        tunerBar = (SeekBar) findViewById(R.id.tunerControl);
+        tunerBar.setOnSeekBarChangeListener(this);
+
+        stationDisp = (TextView) findViewById(R.id.stationView);
+
+        AmFm = (Switch) findViewById(R.id.amfm);
+        AmFm.setOnCheckedChangeListener(this);
+
+        preset1 = (Button)findViewById(R.id.preset1);
+        preset1.setOnClickListener(this);
+
+        preset2 = (Button)findViewById(R.id.preset2);
+        preset2.setOnClickListener(this);
+
+        preset3 = (Button)findViewById(R.id.preset3);
+        preset3.setOnClickListener(this);
+
+        preset4 = (Button)findViewById(R.id.preset4);
+        preset4.setOnClickListener(this);
+
+        preset5 = (Button)findViewById(R.id.preset5);
+        preset5.setOnClickListener(this);
 
 
     }
@@ -49,28 +82,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
-    public void onClick(View v)
-    {
-        this.powerButton(v);
+    public void onClick(View v) {
+        if (v.getId() == R.id.onoffSwitch) {
+            this.powerButton(v);
+        } else {
+            changePresets(v);
+        }
     }
 
-    public void powerButton(View v)
-    {
+    public void powerButton(View v) {
         CharSequence currentState = this.onOff.getText();
-        Log.i("sdfhshf", (String) currentState);
         if (currentState.equals(this.onOff.getTextOff())) {
             this.clock.setTextColor(Color.BLACK);
             this.track.setTextColor(Color.BLACK);
             this.TrackNumber.setTextColor(Color.BLACK);
             this.tunerBar.setProgress(0);
             this.volumeBar.setProgress(0);
-        }
-        else
-        {
+            this.tunerBar.setEnabled(false);
+            this.volumeBar.setEnabled(false);
+            this.AmFm.setClickable(false);
+
+        } else {
             this.clock.setTextColor(Color.GREEN);
             this.track.setTextColor(Color.GREEN);
             this.TrackNumber.setTextColor(Color.GREEN);
+            this.tunerBar.setEnabled(true);
+            this.volumeBar.setEnabled(true);
+            this.AmFm.setClickable(true);
 
         }
 
@@ -91,4 +131,117 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (fromUser) {
+            if (!this.AmFm.isChecked()) {
+                setRadioText(progress, 117);
+            } else {
+                setRadioText(progress,99);
+            }
+        }
+    }
+
+    public void setRadioText(int progress, int max){
+        if (max==117)
+        {
+            this.tunerBar.setMax(max);
+            int station = (progress*10)+530;
+            String display = station+" kHZ AM";
+            this.stationDisp.setText(display);
+        }
+        else
+        {
+            this.tunerBar.setMax(max);
+            double station = ((progress * 2) + 881);
+            double display = station / 10;
+            String newStation = display + " MHz FM";
+            this.stationDisp.setText(newStation);
+        }
+    }
+
+
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked)
+        {
+            setRadioText(this.tunerBar.getProgress(), 99);
+        }
+        else
+        {
+            setRadioText(this.tunerBar.getProgress(),117);
+        }
+    }
+
+    public void changePresets(View v)
+    {
+        if (!this.AmFm.isChecked()) {
+            int am = 117;
+            if (v.getId() == R.id.preset1) {
+                setRadioText(2,am);
+            }
+
+            else if (v.getId()==R.id.preset2)
+            {
+                setRadioText(7, am);
+            }
+
+            else if (v.getId()==R.id.preset3)
+            {
+                setRadioText(12,am);
+            }
+
+            else if (v.getId()==R.id.preset4)
+            {
+                setRadioText(17, am);
+            }
+
+            else
+            {
+                setRadioText(22, am);
+            }
+        }
+
+        else
+        {
+            int am = 99;
+            if (v.getId() == R.id.preset1) {
+                setRadioText(14,am);
+            }
+
+            else if (v.getId()==R.id.preset2)
+            {
+                setRadioText(24, am);
+            }
+
+            else if (v.getId()==R.id.preset3)
+            {
+                setRadioText(34,am);
+            }
+
+            else if (v.getId()==R.id.preset4)
+            {
+                setRadioText(44, am);
+            }
+
+            else
+            {
+                setRadioText(54, am);
+            }
+        }
+    }
 }
+
+
